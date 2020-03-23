@@ -1,6 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo_next6</title>
+    <url>/2020/03/23/Hexo-next6/</url>
+    <content><![CDATA[<h3 id="设置RSS订阅"><a href="#设置RSS订阅" class="headerlink" title="设置RSS订阅"></a>设置RSS订阅</h3><ul>
+<li>在你<code>Hexo 站点</code>目录下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开站点配置文件,添加如下配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">plugin</span><br><span class="line">- hexo-generator-feed</span><br><span class="line">#Feed Atom</span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+
+<h3 id="浏览页面的时候显示当前浏览进度"><a href="#浏览页面的时候显示当前浏览进度" class="headerlink" title="浏览页面的时候显示当前浏览进度"></a>浏览页面的时候显示当前浏览进度</h3><ul>
+<li>打开主题配置文件<code>,搜索关键字</code>scrollpercent<code>,把</code>false<code>改为</code>true` </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Scroll percent label in b2t button</span><br><span class="line">scrollpercent: true</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果想把<code>top</code>按钮放在<code>侧边栏</code>,打开<code>主题配置文件,搜索关键字</code>b2t<code>,把</code>false<code>改为</code>true` </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Back to top in sidebar</span><br><span class="line"> b2t: true</span><br><span class="line"> # Scroll percent label in b2t button</span><br><span class="line"> scrollpercent: true</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="代码块添加复制按钮"><a href="#代码块添加复制按钮" class="headerlink" title="代码块添加复制按钮"></a>代码块添加复制按钮</h3><ul>
+<li>hexo中next主题给内容页里的代码块新增**复制按钮</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">codeblock:</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true #增加复制按钮的开关</span><br><span class="line">    show_result: true #点击复制完后是否显示 复制成功 结果提示</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="添加顶部加载条"><a href="#添加顶部加载条" class="headerlink" title="添加顶部加载条"></a>添加顶部加载条</h3><ul>
+<li>打开主题配置文件，搜索关键字<code>pace</code>,设置为<code>true</code>,可以更换加载样式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Progress bar in the top during page loading.</span><br><span class="line">pace: true</span><br><span class="line"># Themes list:</span><br><span class="line">#pace-theme-big-counter</span><br><span class="line">#pace-theme-bounce</span><br><span class="line">#pace-theme-barber-shop</span><br><span class="line">#pace-theme-center-atom</span><br><span class="line">#pace-theme-center-circle</span><br><span class="line">#pace-theme-center-radar</span><br><span class="line">#pace-theme-center-simple</span><br><span class="line">#pace-theme-corner-indicator</span><br><span class="line">#pace-theme-fill-left</span><br><span class="line">#pace-theme-flash</span><br><span class="line">#pace-theme-loading-bar</span><br><span class="line">#pace-theme-mac-osx</span><br><span class="line">#pace-theme-minimal</span><br><span class="line"># For example</span><br><span class="line"># pace_theme: pace-theme-center-simple</span><br><span class="line">pace_theme: pace-theme-flash #替换更换样式</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="hexo修改文章底部的那个带-号的标签"><a href="#hexo修改文章底部的那个带-号的标签" class="headerlink" title="hexo修改文章底部的那个带#号的标签"></a>hexo修改文章底部的那个带#号的标签</h3><ul>
+<li>修改模板 <code>/themes/next/layout/_macro/post.swig</code>，搜索 <code>rel=&quot;tag&quot;&gt;#</code>，将 # 换成<code>&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</code></li>
+</ul>
+<h3 id="取消动画"><a href="#取消动画" class="headerlink" title="取消动画"></a>取消动画</h3><ul>
+<li>将<code>motion</code>下的<code>enable</code>参数设置为<code>false</code>即可关闭页面动画</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">motion:</span><br><span class="line">  enable: false</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="集成百度统计"><a href="#集成百度统计" class="headerlink" title="集成百度统计"></a>集成百度统计</h3><ul>
+<li><p>登录 <a href="http://tongji.baidu.com/" target="_blank" rel="noopener">百度统计</a>， 定位到站点的代码获取页面</p>
+</li>
+<li><p>复制 <code>hm.js?</code> 后面那串统计脚本 id</p>
+</li>
+<li><p>编辑 主题配置文件， 修改字段 baidu_analytics 字段，值设置成你的百度统计脚本 id。</p>
+</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Baidu Analytics ID</span></span><br><span class="line"><span class="attr">baidu_analytics:</span> <span class="string">31xxxxxxxxxxxxxxf7</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="设置不蒜子统计"><a href="#设置不蒜子统计" class="headerlink" title="设置不蒜子统计"></a>设置不蒜子统计</h3><ul>
+<li>next6.0新增busuanzi阅读统计</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">busuanzi_count:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span>  <span class="comment">#设true 开启</span></span><br><span class="line">  <span class="attr">total_visitors:</span> <span class="literal">true</span>  <span class="comment">#总阅读人数 uv数</span></span><br><span class="line">  <span class="attr">total_visitors_icon:</span> <span class="string">user</span>  <span class="comment">#阅读总人数的图标</span></span><br><span class="line">  <span class="attr">total_views:</span> <span class="literal">true</span>  <span class="comment">#总阅读次数 pv数</span></span><br><span class="line">  <span class="attr">total_views_icon:</span> <span class="string">eye</span>  <span class="comment">#阅读总次数的图标</span></span><br><span class="line">  <span class="attr">post_views:</span> <span class="literal">true</span> <span class="comment">#开启内容阅读次数</span></span><br><span class="line"><span class="comment">##   post_views_icon: eye #内容页阅读数的图标</span></span><br></pre></td></tr></table></figure>
+
+<p>详见：<a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="noopener">不蒜子|不如</a></p>
+<h3 id="设置每篇文章的阅读时长和字数"><a href="#设置每篇文章的阅读时长和字数" class="headerlink" title="设置每篇文章的阅读时长和字数"></a>设置每篇文章的阅读时长和字数</h3><ul>
+<li>新增字数统计,阅读时长,先安装插件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-symbols-count-time --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>主题配置信息如下:</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">symbols_count_time:</span></span><br><span class="line">  <span class="attr">separated_meta:</span> <span class="literal">true</span>  <span class="comment"># false 会显示一行</span></span><br><span class="line">  <span class="attr">item_text_post:</span> <span class="literal">true</span>  <span class="comment"># 显示属性名称,设为false后只显示图标和统计数字,不显示属性的文字</span></span><br><span class="line">  <span class="attr">item_text_total:</span> <span class="literal">true</span> <span class="comment">#底部footer是否显示字数统计属性文字</span></span><br><span class="line">  <span class="attr">awl:</span> <span class="number">4</span> <span class="comment">#计算字数的一个设置,没设置过</span></span><br><span class="line">  <span class="attr">wpm:</span> <span class="number">275</span> <span class="comment">#一分钟阅读的字数</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>站点配置新增如下:</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">symbols_count_time:</span></span><br><span class="line"> <span class="comment">#文章内是否显示</span></span><br><span class="line">  <span class="attr">symbols:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">time:</span> <span class="literal">true</span></span><br><span class="line"> <span class="comment"># 网页底部是否显示</span></span><br><span class="line">  <span class="attr">total_symbols:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_time:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="设置评论系统-Valine"><a href="#设置评论系统-Valine" class="headerlink" title="设置评论系统-Valine"></a>设置评论系统-Valine</h3><ul>
+<li>点击官网<a href="https://leancloud.cn/" target="_blank" rel="noopener">leancloud</a>注册账号,获取自己的appid,appkey,在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名  ，添加域名</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.</span></span><br><span class="line">  <span class="attr">appid:</span>  <span class="comment"># your leancloud application appid</span></span><br><span class="line">  <span class="attr">appkey:</span>  <span class="comment"># your leancloud application appkey</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># mail notifier, See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># pagination size</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># if false, comment count will only be displayed in post page, not in home page</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="设置标签和分类页取消评论功能"><a href="#设置标签和分类页取消评论功能" class="headerlink" title="设置标签和分类页取消评论功能"></a>设置标签和分类页取消评论功能</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title:  #页面主题</span><br><span class="line">date: 2017-08-18 15:00:55 #当前创建文件时间</span><br><span class="line">type: &quot;tags&quot; # 设置页面类型</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo_next</tag>
+        <tag>坑点</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HashMap</title>
     <url>/2020/03/23/HashMap/</url>
     <content><![CDATA[<h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>HashMap基于哈希表的Map接口实现，是以key-value存储形式存在，即主要用来存放键值对。HashMap 的实现不是同步的，这意味着它不是线程安全的。它的key、value都可以为null。此外，HashMap中的映射不是有序的。</p>
