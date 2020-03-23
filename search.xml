@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>HashMap</title>
+    <url>/2020/03/23/HashMap/</url>
+    <content><![CDATA[<h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>HashMap基于哈希表的Map接口实现，是以key-value存储形式存在，即主要用来存放键值对。HashMap 的实现不是同步的，这意味着它不是线程安全的。它的key、value都可以为null。此外，HashMap中的映射不是有序的。</p>
+<p>JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突(两个对象调用的hashCode方法计算的哈希码值一致导致计算的数组索引值相同)。JDK8之后，当链表长度大于阈值（或者红黑树的边界值，默认为 8）并且当前数组的<strong>长度大于64时</strong>，此时此索引位置上的所有数据改为使用红黑树存储。</p>
+<p>补充：将链表转换成红黑树前会判断，即使阈值大于8，但是数组长度小于64，此时并不会将链表变为红黑树。而是选择进行数组扩容。</p>
+<p>当然虽然增了红黑树作为底层数据结构，结构变得复杂了，但是阈值大于8并且数组长度大于64时，链表转换为红黑树时，效率也变的相对更高效。</p>
+<a id="more"></a>
+
+<h1 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h1><p>1.存取无序的</p>
+<p>2.键和值位置都可以是null，但是键位置只能是一个null</p>
+<p>3.键位置是唯一的，底层的数据结构控制键的位置</p>
+<p>4.jdk1.8前数据结构是：链表 + 数组 jdk1.8之后是：链表 + 数组 + 红黑树</p>
+<p>5.阈值(边界值) &gt; 8 并且数组长度大于64，才将链表转换为红黑树，变为红黑树的目的是为了高效的查询。</p>
+<h1 id="流程说明"><a href="#流程说明" class="headerlink" title="流程说明"></a>流程说明</h1><p>1.HashMap&lt;String, Integer&gt; map = new HashMap&lt;&gt;();<br>创建HashMap对象后,在JDK8之前，底层是创建了-个长度是1 6的Entry[] table, 但是在JDK8之后，并没有在创建集合对象的时候创建数组，而是在首次调用put方法时，底层创建长度为16的Node [] table数组。<br>2.假设向哈希表中存储数据A,根据A调用String类中的hashCode方法计算出哈希码值，此哈希码经过某种算法计算以后，得到在Node数组中存放的位置，如果此位置上数据为空，就直接添加到该位置。</p>
+<h1 id="HashMap中hash函数是如何实现的"><a href="#HashMap中hash函数是如何实现的" class="headerlink" title="HashMap中hash函数是如何实现的"></a>HashMap中hash函数是如何实现的</h1><p>对key的hashCode做hash操作，无符号右移1 6位做异或运算，下标计算方式是 hash %数组长度<br>假设向哈希表中存储了A，根据A计算的哈希码结合数组长度计算出Node数组的索引是2,此时，该位置已经有了B，那么此时位置不为空,那么此时比对二者的hash值，如果哈希值不相同，那么A会在此空间划出一一个节点变为链表来存储<br>假设此时向哈希表中又存储了一个B2,根据key计算出的哈希值结合数组计算出的索引是2,那么此时该位置已经有了数据，就比较后添加的数据的key和已存在的哈希值是否相同，如果相同，继续比较;调用后天假的肖战所属类的equals方法，比较内容是否相等。如果返回false,就作为链表节点继续添加。如果返回true,则后添加的B2,替换之前的B</p>
+<h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><p><img src="https://gitee.com/bin1018/MaYunImages/raw/master/img/20200320131310.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>HashMap</category>
+      </categories>
+      <tags>
+        <tag>HashMap</tag>
+        <tag>难点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown的快捷使用</title>
+    <url>/2020/03/23/Markdown/</url>
+    <content><![CDATA[<h1 id="创建Markdown-笔记快捷键"><a href="#创建Markdown-笔记快捷键" class="headerlink" title="创建Markdown 笔记快捷键"></a>创建Markdown 笔记快捷键</h1><blockquote>
+<p>Ctrl+alt+D（Mac 上 CMD+D）</p>
+</blockquote>
+<hr>
+<h1 id="设置分级标题"><a href="#设置分级标题" class="headerlink" title="设置分级标题"></a>设置分级标题</h1><p><strong>语法示例</strong>：</p>
+<blockquote>
+<p># 一级标题<br>## 二级标题<br>### 三级标题<br>#### 四级标题<br>##### 五级标题<br>###### 六级标题</p>
+</blockquote>
+<hr>
+<h1 id="加粗文本"><a href="#加粗文本" class="headerlink" title="加粗文本"></a>加粗文本</h1><blockquote>
+<p>**印象笔记**<br><strong>印象笔记</strong></p>
+<p><strong>快捷键:</strong>  Ctrl/Command + B</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h1 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h1><blockquote>
+<p>*印象笔记*<br><em>印象笔记</em></p>
+<p><strong>快捷键:</strong> Ctrl/Command + I</p>
+</blockquote>
+<hr>
+<h1 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h1><blockquote>
+<p>&lt;u&gt;印象笔记&lt;/u&gt;<br><u>印象笔记</u></p>
+<p><strong>快捷键:</strong> Ctrl/Command + U</p>
+</blockquote>
+<hr>
+<h1 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h1><blockquote>
+<p>~<del>印象笔记</del><br><del>印象笔记</del></p>
+</blockquote>
+<blockquote>
+<p><strong>快捷键:</strong> Ctrl/Command + T</p>
+</blockquote>
+<hr>
+<h1 id="添加分割线"><a href="#添加分割线" class="headerlink" title="添加分割线"></a>添加分割线</h1><blockquote>
+<p>***</p>
+<hr>
+<p><strong>快捷键:</strong>  Ctrl/Command + Shift + -</p>
+</blockquote>
+<hr>
+<h1 id="引用文本"><a href="#引用文本" class="headerlink" title="引用文本"></a>引用文本</h1><blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>近日，印象笔记宣布完成重组。作为Evernote已在中国独立运营近6年的品牌，印象笔记将成为由中方控股的中美合资独立运营实体，并获得红杉宽带跨境数字产业基金首轮数亿元人民币投资</p>
+</blockquote>
+</blockquote>
+<hr>
+<h1 id="插入代码块"><a href="#插入代码块" class="headerlink" title="插入代码块"></a>插入代码块</h1><blockquote>
+<p>``` key<br>```</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>快捷键:</strong> Ctrl+Shift+L</p>
+</blockquote>
+<h3 id="插入日期和时间"><a href="#插入日期和时间" class="headerlink" title="插入日期和时间"></a>插入日期和时间</h3><blockquote>
+<p><strong>快捷键:</strong>  Alt + Shift + D</p>
+</blockquote>
+<blockquote>
+<p>2019/12/1 21:31</p>
+</blockquote>
+<hr>
+<h3 id="添加符号列表或者数字列表"><a href="#添加符号列表或者数字列表" class="headerlink" title="添加符号列表或者数字列表"></a>添加符号列表或者数字列表</h3><blockquote>
+<p>使用 iOS 版本印象笔记如何快速保存内容？</p>
+<ol>
+<li>启用印象笔记 Widget ——印象笔记·剪贴板</li>
+<li>复制粘贴任意内容<ul>
+<li>微信</li>
+</ul>
+</li>
+<li>滑动到 Widget 插件区域即可完成保存<br>印象笔记·剪贴板有什么特点？<br>* 快：开启自动模式，可以自动保存剪贴板的任意内容<br>* 一切：只要可以复制粘贴就可以保存<br>* 有序：全部保存在「我的剪贴板」笔记本并以时间来命名</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>使用 iOS 版本印象笔记如何快速保存内容？</p>
+<ol>
+<li>启用印象笔记 Widget ——印象笔记·剪贴板</li>
+<li>复制粘贴任意内容</li>
+</ol>
+<ul>
+<li>微信</li>
+</ul>
+<ol start="3">
+<li>滑动到 Widget 插件区域即可完成保存<br>印象笔记·剪贴板有什么特点？</li>
+</ol>
+<ul>
+<li>快：开启自动模式，可以自动保存剪贴板的任意内容</li>
+<li>一切：只要可以复制粘贴就可以保存</li>
+<li>有序：全部保存在「我的剪贴板」</li>
+<li>笔记本并以时间来命名</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>快捷键:</strong><br>   编号列表 Ctrl + Shift + O<br>   项目符号列表 Ctrl + Shift + W</p>
+</blockquote>
+<hr>
+<h3 id="添加待办事项"><a href="#添加待办事项" class="headerlink" title="添加待办事项"></a>添加待办事项</h3><blockquote>
+<p>三只青蛙<br>* [x] 第一只青蛙<br>* [ ] 第二只青蛙<br>* [ ] 第三只青蛙</p>
+</blockquote>
+<blockquote>
+<p>三只青蛙</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 第一只青蛙</li>
+<li><input disabled="" type="checkbox"> 第二只青蛙</li>
+<li><input disabled="" type="checkbox"> 第三只青蛙</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>快捷键:</strong> Ctrl + Shift + C</p>
+</blockquote>
+<hr>
+<h3 id="插入链接"><a href="#插入链接" class="headerlink" title="插入链接"></a>插入链接</h3><blockquote>
+<p>[印象笔记官网](<a href="https://www.yinxiang.com/" target="_blank" rel="noopener">https://www.yinxiang.com/</a>)<br><a href="https://www.yinxiang.com/" target="_blank" rel="noopener">印象笔记官网</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello Hexo</title>
+    <url>/2020/03/21/hello-Hexo/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<a id="more"></a>
+
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
